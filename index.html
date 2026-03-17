@@ -14,7 +14,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body { height: 100vh; display: grid; grid-template-rows: auto 1fr; background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; }
+  body { min-height: 100vh; height: 100vh; display: grid; grid-template-rows: auto 1fr; background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; overflow: hidden; }
 
   /* HEADER */
   header { border-bottom: 1px solid var(--border); padding: 13px 22px; display: flex; align-items: center; gap: 12px; background: var(--surface); }
@@ -30,7 +30,7 @@
   main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 51px); overflow: hidden; }
 
   /* LEFT */
-  .left-panel { border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 16px; gap: 12px; overflow-y: auto; }
+  .left-panel { border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 16px; gap: 12px; overflow-y: auto; height: calc(100vh - 51px); }
   .panel-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
 
   .api-key-section { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px; }
@@ -86,7 +86,7 @@
   .input-actions { display: flex; gap: 7px; }
 
   /* RIGHT */
-  .right-panel { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+  .right-panel { display: flex; flex-direction: column; height: calc(100vh - 51px); overflow: hidden; }
   .view-tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
   .view-tab {
     flex: 1; background: transparent; border: none; border-bottom: 2px solid transparent;
@@ -113,7 +113,7 @@
   /* CARDS */
   .result-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    overflow: hidden; animation: slideIn 0.15s ease;
+    animation: slideIn 0.15s ease;
     border-left: 3px solid var(--tc, var(--border));
   }
   @keyframes slideIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
@@ -121,7 +121,10 @@
   .card-header {
     display: flex; align-items: center; gap: 8px; padding: 9px 12px;
     background: var(--surface2); cursor: pointer; user-select: none;
+    border-radius: 7px 7px 0 0;
   }
+  .result-card.expanded .card-header { border-radius: 7px 7px 0 0; }
+  .result-card:not(.expanded) .card-header { border-radius: 7px; }
   .card-header:active { opacity: 0.8; }
 
   .type-badge {
@@ -157,12 +160,12 @@
   .card-update-input { width: 100%; font-size: 11px; padding: 7px 9px; min-height: 44px; }
   .card-update-actions { display: flex; gap: 6px; margin-top: 6px; justify-content: flex-end; }
 
-  .card-actions { display: flex; align-items: center; gap: 5px; padding: 8px 12px; border-top: 1px solid var(--border); background: var(--bg); flex-wrap: wrap; }
+  .card-actions { display: flex; align-items: center; gap: 5px; padding: 8px 12px; border-top: 1px solid var(--border); background: var(--bg); flex-wrap: wrap; border-radius: 0 0 7px 7px; }
   .card-actions .spacer { flex: 1; }
 
-  .card-rejection { font-size: 11px; color: var(--red); padding: 10px 12px; background: rgba(239,68,68,0.06); line-height: 1.5; }
+  .card-rejection { font-size: 11px; color: var(--red); padding: 10px 12px; background: rgba(239,68,68,0.06); line-height: 1.5; border-radius: 0 0 7px 7px; }
 
-  pre.raw-json { padding: 10px; font-size: 9px; line-height: 1.5; color: var(--text-dim); overflow-x: auto; border-top: 1px solid var(--border); display: none; }
+  pre.raw-json { padding: 10px; font-size: 9px; line-height: 1.5; color: var(--text-dim); overflow-x: auto; border-top: 1px solid var(--border); display: none; border-radius: 0 0 7px 7px; }
   pre.raw-json.open { display: block; }
 
   /* ENTITY TAGS */
@@ -210,7 +213,8 @@
       letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
     }
     .mob-tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
-    main { grid-template-columns: 1fr; height: calc(100vh - 93px); }
+    body { grid-template-rows: auto auto 1fr; overflow: hidden; height: 100vh; }
+    main { grid-template-columns: 1fr; height: 100%; overflow: hidden; }
     .left-panel  { display: none; border-right: none; padding: 12px; height: 100%; }
     .left-panel.mob-on  { display: flex; }
     .right-panel { display: none; height: 100%; }
