@@ -8,60 +8,29 @@
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;800&display=swap');
 
   :root {
-    --bg: #0a0a0f;
-    --surface: #111118;
-    --surface2: #1a1a24;
-    --border: #2a2a3a;
-    --accent: #5b5bd6;
-    --accent2: #7c7cf0;
-    --text: #e8e8f0;
-    --text-dim: #6b6b80;
-    --text-muted: #3a3a4a;
-    --green: #22c55e;
-    --red: #ef4444;
-    --yellow: #f59e0b;
-    --cyan: #06b6d4;
-    --type-task: #5b5bd6;
-    --type-update: #06b6d4;
-    --type-thread: #22c55e;
-    --type-done: #6b6b80;
-    --type-report: #f59e0b;
-    --type-rejected: #ef4444;
+    --bg: #0a0a0f; --surface: #111118; --surface2: #1a1a24; --border: #2a2a3a;
+    --accent: #5b5bd6; --accent2: #7c7cf0; --text: #e8e8f0; --text-dim: #6b6b80;
+    --text-muted: #3a3a4a; --green: #22c55e; --red: #ef4444; --yellow: #f59e0b; --cyan: #06b6d4;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr;
-  }
+  body { height: 100vh; display: grid; grid-template-rows: auto 1fr; background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; }
 
   /* HEADER */
-  header {
-    border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--surface);
-  }
+  header { border-bottom: 1px solid var(--border); padding: 13px 22px; display: flex; align-items: center; gap: 12px; background: var(--surface); }
   .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: -0.5px; }
   .logo span { color: var(--accent2); }
-  .badge { font-size: 9px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; }
+  .badge { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; }
   .api-status { margin-left: auto; display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-dim); }
-  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); flex-shrink: 0; }
   .status-dot.active { background: var(--green); box-shadow: 0 0 5px var(--green); }
   .status-dot.error  { background: var(--red); }
 
   /* LAYOUT */
-  main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 53px); }
+  main { display: grid; grid-template-columns: 1fr 1fr; height: calc(100vh - 51px); overflow: hidden; }
 
   /* LEFT */
-  .left-panel { border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 18px; gap: 14px; overflow-y: auto; }
+  .left-panel { border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 16px; gap: 12px; overflow-y: auto; }
   .panel-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
 
   .api-key-section { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px; }
@@ -69,160 +38,171 @@
 
   input[type="password"], input[type="text"], select, textarea {
     background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
-    padding: 7px 11px; color: var(--text); font-family: 'JetBrains Mono', monospace;
+    padding: 7px 10px; color: var(--text); font-family: 'JetBrains Mono', monospace;
     font-size: 12px; outline: none; transition: border-color 0.2s; width: 100%;
   }
   .api-key-row input { flex: 1; width: auto; }
   input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-  select { cursor: pointer; }
-  select option { background: var(--surface2); }
+  select { cursor: pointer; } select option { background: var(--surface2); }
   textarea { resize: vertical; line-height: 1.6; }
 
   button {
-    background: var(--accent); border: none; border-radius: 4px; padding: 7px 15px;
+    background: var(--accent); border: none; border-radius: 4px; padding: 7px 14px;
     color: white; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
     cursor: pointer; transition: all 0.15s; white-space: nowrap;
   }
   button:hover { background: var(--accent2); }
   button:active { transform: scale(0.98); }
   button:disabled { opacity: 0.4; cursor: not-allowed; }
-  button.secondary { background: transparent; border: 1px solid var(--border); color: var(--text-dim); }
-  button.secondary:hover { border-color: var(--accent); color: var(--text); }
+  button.sec { background: transparent; border: 1px solid var(--border); color: var(--text-dim); }
+  button.sec:hover { border-color: var(--accent); color: var(--text); background: transparent; }
   button.danger { background: transparent; border: 1px solid rgba(239,68,68,0.3); color: var(--red); }
-  button.danger:hover { background: rgba(239,68,68,0.08); border-color: var(--red); }
-  button.small { font-size: 10px; padding: 4px 9px; }
+  button.danger:hover { background: rgba(239,68,68,0.07); }
+  button.sm { font-size: 10px; padding: 4px 9px; }
+  button.xs { font-size: 9px; padding: 3px 7px; }
 
-  .input-section { display: flex; flex-direction: column; }
-  .input-section textarea { margin-top: 7px; min-height: 80px; }
-  .input-actions { display: flex; gap: 7px; margin-top: 9px; }
-
-  /* CHIPS */
-  .chips-section { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 12px; }
-  .collapsible-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
-  .collapsible-header .ti { font-size: 9px; color: var(--text-muted); transition: transform 0.2s; }
-  .collapsible-header.open .ti { transform: rotate(180deg); }
-  .collapsible-body { display: none; margin-top: 10px; }
-  .collapsible-body.open { display: block; }
-
-  .chip-groups { display: flex; flex-direction: column; gap: 9px; }
-  .chip-group-label { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
-  .chip-row { display: flex; flex-wrap: wrap; gap: 4px; }
-  .chip {
-    background: var(--bg); border: 1px solid var(--border); border-radius: 3px;
-    padding: 3px 8px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;
-    font-size: 10px; cursor: pointer; transition: all 0.12s; user-select: none;
+  /* PILL SELECTORS */
+  .pill-row { display: flex; flex-wrap: wrap; gap: 5px; }
+  .pill {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; cursor: pointer; transition: all 0.12s; user-select: none; line-height: 1;
   }
-  .chip:hover { border-color: var(--accent); color: var(--text); background: var(--surface2); }
-  .chip-type { border-color: rgba(91,91,214,0.3);  color: #8080e0; }
-  .chip-cat  { border-color: rgba(6,182,212,0.25); color: var(--cyan); }
-  .chip-sync { border-color: rgba(245,158,11,0.3); color: var(--yellow); }
+  .pill:hover { border-color: var(--accent2); color: var(--text); }
+  .pill.active { background: var(--accent); border-color: var(--accent); color: white; }
+  .pill-type.active  { background: #5b5bd6; border-color: #5b5bd6; }
+  .pill-cat.active   { background: #0e7490; border-color: #0e7490; color: white; }
+  .pill-sync { border-color: rgba(245,158,11,0.35); color: var(--yellow); }
+  .pill-sync:hover   { background: rgba(245,158,11,0.08); }
+  .pill-sync.active  { background: rgba(245,158,11,0.15); border-color: var(--yellow); color: var(--yellow); }
+
+  /* INPUT AREA */
+  .input-block { display: flex; flex-direction: column; gap: 8px; }
+  .selector-row { display: flex; flex-direction: column; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+  .selector-group { display: flex; align-items: center; gap: 8px; }
+  .selector-label { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); width: 34px; flex-shrink: 0; }
+
+  textarea#inputText { margin: 0; min-height: 72px; border-radius: 6px; font-size: 13px; padding: 10px 12px; }
+  .input-actions { display: flex; gap: 7px; }
 
   /* RIGHT */
   .right-panel { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
-
   .view-tabs { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); flex-shrink: 0; }
   .view-tab {
     flex: 1; background: transparent; border: none; border-bottom: 2px solid transparent;
-    border-radius: 0; padding: 10px 0; color: var(--text-dim);
-    font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
-    cursor: pointer; transition: all 0.15s;
+    border-radius: 0; padding: 10px 0; color: var(--text-dim); font-size: 9px;
+    letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
   }
   .view-tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
 
-  .output-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 16px 0; flex-shrink: 0; }
-  .history-controls { display: flex; align-items: center; gap: 7px; }
+  .output-header { display: flex; align-items: center; justify-content: space-between; padding: 9px 14px 0; flex-shrink: 0; }
   .history-count { font-size: 10px; color: var(--text-muted); }
+  .history-controls { display: flex; align-items: center; gap: 7px; }
 
-  .results-area { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .results-area { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 12px 80px 12px; display: flex; flex-direction: column; gap: 8px; }
+  .filter-bar { display: flex; gap: 5px; flex-wrap: wrap; padding: 9px 12px 0; flex-shrink: 0; }
+
+  /* TYPE COLORS */
+  .col-TASK     { --tc: #5b5bd6; }
+  .col-UPDATE   { --tc: #06b6d4; }
+  .col-THREAD   { --tc: #22c55e; }
+  .col-DONE     { --tc: #6b6b80; }
+  .col-REPORT   { --tc: #f59e0b; }
+  .col-REJECTED { --tc: #ef4444; }
 
   /* CARDS */
-  .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; animation: slideIn 0.18s ease; }
-  @keyframes slideIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+  .result-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden; animation: slideIn 0.15s ease;
+    border-left: 3px solid var(--tc, var(--border));
+  }
+  @keyframes slideIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 
-  .card-header { display: flex; align-items: center; gap: 7px; padding: 9px 13px; background: var(--surface2); border-bottom: 1px solid var(--border); }
-  .type-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; flex-shrink: 0; }
-  .type-TASK     { background: rgba(91,91,214,0.18);  color: var(--type-task);     border: 1px solid rgba(91,91,214,0.3); }
-  .type-UPDATE   { background: rgba(6,182,212,0.15);  color: var(--type-update);   border: 1px solid rgba(6,182,212,0.3); }
-  .type-THREAD   { background: rgba(34,197,94,0.15);  color: var(--type-thread);   border: 1px solid rgba(34,197,94,0.3); }
-  .type-DONE     { background: rgba(107,107,128,0.15);color: var(--type-done);     border: 1px solid rgba(107,107,128,0.3); }
-  .type-REPORT   { background: rgba(245,158,11,0.15); color: var(--type-report);   border: 1px solid rgba(245,158,11,0.3); }
-  .type-REJECTED { background: rgba(239,68,68,0.15);  color: var(--type-rejected); border: 1px solid rgba(239,68,68,0.3); }
+  .card-header {
+    display: flex; align-items: center; gap: 8px; padding: 9px 12px;
+    background: var(--surface2); cursor: pointer; user-select: none;
+  }
+  .card-header:active { opacity: 0.8; }
 
-  .card-category { font-size: 9px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-  .card-ts { margin-left: auto; font-size: 9px; color: var(--text-muted); }
+  .type-badge {
+    font-size: 9px; font-weight: 700; letter-spacing: 1.5px; padding: 2px 6px;
+    border-radius: 3px; text-transform: uppercase; flex-shrink: 0;
+    background: color-mix(in srgb, var(--tc, #888) 18%, transparent);
+    color: var(--tc, #888);
+    border: 1px solid color-mix(in srgb, var(--tc, #888) 30%, transparent);
+  }
+  .card-cat  { font-size: 9px; color: var(--text-muted); letter-spacing: 1px; }
+  .card-preview { flex: 1; font-size: 11px; color: var(--text-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .card-ts   { font-size: 9px; color: var(--text-muted); flex-shrink: 0; }
+  .card-chevron { font-size: 9px; color: var(--text-muted); transition: transform 0.2s; flex-shrink: 0; }
+  .result-card.expanded .card-chevron { transform: rotate(180deg); }
 
-  .card-body { padding: 11px 13px; display: flex; flex-direction: column; gap: 5px; min-height: 44px; }
-  .card-content { font-size: 12px; color: var(--text); line-height: 1.5; }
-  .card-thread { font-size: 10px; color: var(--accent2); }
-  .card-meta { display: flex; flex-wrap: wrap; gap: 10px; }
-  .meta-item { font-size: 10px; color: var(--text-dim); }
-  .meta-item .ml { color: var(--text-muted); margin-right: 3px; }
-  .card-entities { display: flex; flex-wrap: wrap; gap: 3px; }
-  .entity-tag { background: rgba(91,91,214,0.1); border: 1px solid rgba(91,91,214,0.2); border-radius: 3px; padding: 1px 6px; font-size: 9px; color: var(--accent2); }
-  .card-rejection { font-size: 11px; color: var(--red); padding: 6px 9px; background: rgba(239,68,68,0.07); border-radius: 4px; }
+  /* CARD BODY — always rendered, toggled via height */
+  .card-body { display: none; border-top: 1px solid var(--border); }
+  .result-card.expanded .card-body { display: block; }
 
-  .card-actions { display: flex; align-items: center; gap: 5px; padding: 7px 13px; border-top: 1px solid var(--border); background: var(--bg); }
+  .card-content-area { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+
+  .card-field { display: flex; flex-direction: column; gap: 4px; }
+  .card-field-label { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+  .card-field input, .card-field select, .card-field textarea {
+    font-size: 11px; padding: 6px 9px;
+  }
+  .card-field textarea { min-height: 52px; }
+
+  .card-field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+  .card-update-section { border-top: 1px solid var(--border); padding: 10px 12px; background: var(--bg); }
+  .card-update-label { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .card-update-input { width: 100%; font-size: 11px; padding: 7px 9px; min-height: 44px; }
+  .card-update-actions { display: flex; gap: 6px; margin-top: 6px; justify-content: flex-end; }
+
+  .card-actions { display: flex; align-items: center; gap: 5px; padding: 8px 12px; border-top: 1px solid var(--border); background: var(--bg); flex-wrap: wrap; }
   .card-actions .spacer { flex: 1; }
 
-  pre.raw-json { padding: 12px; font-size: 10px; line-height: 1.5; color: var(--text-dim); overflow-x: auto; border-top: 1px solid var(--border); display: none; }
-  pre.raw-json.visible { display: block; }
+  .card-rejection { font-size: 11px; color: var(--red); padding: 10px 12px; background: rgba(239,68,68,0.06); line-height: 1.5; }
+
+  pre.raw-json { padding: 10px; font-size: 9px; line-height: 1.5; color: var(--text-dim); overflow-x: auto; border-top: 1px solid var(--border); display: none; }
+  pre.raw-json.open { display: block; }
+
+  /* ENTITY TAGS */
+  .entity-tag { background: rgba(91,91,214,0.1); border: 1px solid rgba(91,91,214,0.2); border-radius: 3px; padding: 1px 6px; font-size: 9px; color: var(--accent2); }
+  .entities-row { display: flex; flex-wrap: wrap; gap: 3px; }
 
   /* LOADING */
-  .loading-row { display: flex; align-items: center; gap: 9px; padding: 16px 13px; color: var(--text-dim); font-size: 12px; }
-  .spinner { width: 12px; height: 12px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
+  .loading-row { display: flex; align-items: center; gap: 9px; padding: 14px 12px; color: var(--text-dim); font-size: 11px; }
+  .spinner { width: 11px; height: 11px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* EMPTY */
-  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 9px; color: var(--text-muted); text-align: center; padding: 32px; }
-  .empty-icon { font-size: 26px; opacity: 0.3; }
+  .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 8px; color: var(--text-muted); text-align: center; padding: 28px; }
+  .empty-icon { font-size: 24px; opacity: 0.3; }
   .empty-title { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 600; }
-  .empty-sub { font-size: 10px; line-height: 1.6; max-width: 200px; }
+  .empty-sub { font-size: 10px; line-height: 1.6; max-width: 190px; }
 
-  /* THREADS */
-  .threads-wrap { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
-  .threads-filter { display: flex; gap: 5px; flex-wrap: wrap; padding: 10px 14px 0; flex-shrink: 0; }
-  .threads-area { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
-
-  .thread-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .thread-card-header { display: flex; align-items: center; gap: 7px; padding: 9px 13px; background: var(--surface2); border-bottom: 1px solid var(--border); }
-  .thread-cat { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; }
-  .cat-IM   { background: rgba(6,182,212,0.15); color: var(--cyan);    border: 1px solid rgba(6,182,212,0.25); }
-  .cat-IC   { background: rgba(91,91,214,0.15); color: var(--accent2); border: 1px solid rgba(91,91,214,0.25); }
-  .cat-PROF { background: rgba(245,158,11,0.15);color: var(--yellow);  border: 1px solid rgba(245,158,11,0.25); }
-  .cat-PES  { background: rgba(34,197,94,0.15); color: var(--green);   border: 1px solid rgba(34,197,94,0.25); }
-  .thread-title { font-size: 12px; color: var(--text); font-weight: 500; }
-  .thread-count { margin-left: auto; font-size: 9px; color: var(--text-muted); }
-  .thread-body { padding: 9px 13px; display: flex; flex-direction: column; gap: 4px; }
-  .thread-last { font-size: 11px; color: var(--text-dim); line-height: 1.4; }
-  .thread-deadline { font-size: 10px; color: var(--yellow); }
-  .thread-ents { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 3px; }
-
-  /* MODAL */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); display: none; align-items: center; justify-content: center; z-index: 200; padding: 16px; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto; }
-  .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid var(--border); }
-  .modal-title { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; }
-  .modal-close { background: transparent; border: none; color: var(--text-muted); font-size: 17px; cursor: pointer; line-height: 1; padding: 0; }
-  .modal-close:hover { color: var(--text); background: transparent; }
-  .modal-body { padding: 18px; display: flex; flex-direction: column; gap: 12px; }
-  .field-group { display: flex; flex-direction: column; gap: 4px; }
-  .field-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
-  .field-group textarea { min-height: 60px; }
-  .modal-footer { display: flex; gap: 7px; justify-content: flex-end; padding: 12px 18px; border-top: 1px solid var(--border); }
+  /* THREADS / TASKS VIEW */
+  .list-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .list-card-header { display: flex; align-items: center; gap: 7px; padding: 9px 12px; background: var(--surface2); }
+  .list-cat { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 3px; text-transform: uppercase; }
+  .cat-IM   { background: rgba(6,182,212,0.15);  color: var(--cyan);    border: 1px solid rgba(6,182,212,0.25); }
+  .cat-IC   { background: rgba(91,91,214,0.15);  color: var(--accent2); border: 1px solid rgba(91,91,214,0.25); }
+  .cat-PROF { background: rgba(245,158,11,0.15); color: var(--yellow);  border: 1px solid rgba(245,158,11,0.25); }
+  .cat-PES  { background: rgba(34,197,94,0.15);  color: var(--green);   border: 1px solid rgba(34,197,94,0.25); }
+  .list-title { font-size: 11px; color: var(--text); font-weight: 500; flex: 1; }
+  .list-count { font-size: 9px; color: var(--text-muted); }
+  .list-body { padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .list-last  { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+  .list-deadline { font-size: 10px; color: var(--yellow); }
 
   /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar { width: 3px; } ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* MOBILE */
+  /* ── MOBILE ───────────────────────────────────────────── */
   @media (max-width: 700px) {
-    header { padding: 11px 13px; }
-    .logo { font-size: 14px; }
-    .badge { display: none; }
+    header { padding: 10px 13px; }
+    .logo { font-size: 14px; } .badge { display: none; }
     body { grid-template-rows: auto auto 1fr; }
-
     .mob-tab-bar { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); }
     .mob-tab {
       flex: 1; background: transparent; border: none; border-bottom: 2px solid transparent;
@@ -230,26 +210,23 @@
       letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.15s;
     }
     .mob-tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
-
-    main { grid-template-columns: 1fr; height: auto; }
-    .left-panel { display: none; border-right: none; padding: 13px; }
-    .left-panel.mob-on { display: flex; }
-    .right-panel { display: none; height: calc(100vh - 95px); }
+    main { grid-template-columns: 1fr; height: calc(100vh - 93px); }
+    .left-panel  { display: none; border-right: none; padding: 12px; height: 100%; }
+    .left-panel.mob-on  { display: flex; }
+    .right-panel { display: none; height: 100%; }
     .right-panel.mob-on { display: flex; }
-
-    button { padding: 9px 14px; font-size: 12px; }
-    button.small { padding: 6px 11px; font-size: 11px; }
+    button { padding: 9px 13px; font-size: 12px; }
+    button.sm { padding: 6px 11px; font-size: 11px; }
+    button.xs { padding: 4px 9px; font-size: 10px; }
     .input-actions button { flex: 1; padding: 11px; }
     textarea { font-size: 14px; }
-    input[type="password"], input[type="text"] { font-size: 14px; padding: 10px 11px; }
-    .collapsible-body { display: block !important; }
+    input[type="password"], input[type="text"] { font-size: 14px; padding: 9px 11px; }
+    .card-field-row { grid-template-columns: 1fr; }
   }
-
   @media (min-width: 701px) {
     .mob-tab-bar { display: none; }
-    .left-panel { display: flex !important; }
+    .left-panel  { display: flex !important; }
     .right-panel { display: flex !important; }
-    .collapsible-body { display: block !important; }
   }
 </style>
 </head>
@@ -279,50 +256,32 @@
         <input type="password" id="apiKey" placeholder="sk-ant-..." />
         <button onclick="saveKey()">Salvar</button>
       </div>
-      <div style="font-size:9px;color:var(--text-muted);margin-top:5px;">Salva no dispositivo (localStorage)</div>
+      <div style="font-size:9px;color:var(--text-muted);margin-top:5px;">Salva no dispositivo</div>
     </div>
 
-    <div class="input-section">
-      <div class="panel-label">Input telegráfico</div>
-      <textarea id="inputText" placeholder="t/ pes/ renovar cnh&#10;u/ im/ share groc 99 > subsidios dependem de 3S&#10;sync intel" rows="4"></textarea>
-      <div class="input-actions">
-        <button onclick="parseInput()" id="parseBtn">Parsear →</button>
-        <button class="secondary" onclick="clearInput()">Limpar</button>
-      </div>
-    </div>
-
-    <!-- QUICK INPUTS -->
-    <div class="chips-section">
-      <div class="collapsible-header open" id="hQI" onclick="toggleCol('QI')">
-        <div class="panel-label" style="margin-bottom:0">Inputs rápidos</div>
-        <span class="ti">▼</span>
-      </div>
-      <div class="collapsible-body open" id="bQI">
-        <div class="chip-groups">
-          <div>
-            <div class="chip-group-label">Tipo</div>
-            <div class="chip-row" id="typeChips"></div>
-          </div>
-          <div>
-            <div class="chip-group-label">Categoria</div>
-            <div class="chip-row" id="catChips"></div>
-          </div>
-          <div>
-            <div class="chip-group-label">Sync rápido</div>
-            <div class="chip-row" id="syncChips"></div>
-          </div>
+    <div class="input-block">
+      <!-- SELECTORS -->
+      <div class="selector-row">
+        <div class="selector-group">
+          <span class="selector-label">Tipo</span>
+          <div class="pill-row" id="typePills"></div>
+        </div>
+        <div class="selector-group">
+          <span class="selector-label">Cat.</span>
+          <div class="pill-row" id="catPills"></div>
+        </div>
+        <div class="selector-group">
+          <span class="selector-label">Sync</span>
+          <div class="pill-row" id="syncPills"></div>
         </div>
       </div>
-    </div>
 
-    <!-- QUICK TESTS -->
-    <div class="chips-section">
-      <div class="collapsible-header" id="hQT" onclick="toggleCol('QT')">
-        <div class="panel-label" style="margin-bottom:0">Testes rápidos</div>
-        <span class="ti">▼</span>
-      </div>
-      <div class="collapsible-body" id="bQT">
-        <div class="chip-row" style="margin-top:8px" id="quickGrid"></div>
+      <!-- TEXTAREA -->
+      <textarea id="inputText" placeholder="thread_ref > conteúdo  (ou apenas conteúdo para t/)" rows="3"></textarea>
+
+      <div class="input-actions">
+        <button onclick="parseInput()" id="parseBtn">Parsear →</button>
+        <button class="sec" onclick="clearInput()">Limpar</button>
       </div>
     </div>
 
@@ -338,116 +297,41 @@
     </div>
 
     <!-- HISTORY -->
-    <div id="vHistory" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
+    <div id="vHistory" style="flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden;">
       <div class="output-header">
         <span class="history-count" id="histCount"></span>
         <div class="history-controls">
-          <span id="persistBadge" style="font-size:9px;color:var(--text-muted);display:none;">💾 salvo</span>
-          <button class="secondary small" onclick="clearHistory()">Limpar histórico</button>
+          <span id="persistBadge" style="font-size:9px;color:var(--text-muted);display:none;">💾</span>
+          <button class="sec sm" onclick="clearHistory()">Limpar</button>
         </div>
       </div>
       <div class="results-area" id="resultsContainer">
         <div class="empty-state">
           <div class="empty-icon">⬡</div>
           <div class="empty-title">Nenhum parse ainda</div>
-          <div class="empty-sub">Configure a API key, digite um input e clique Parsear</div>
+          <div class="empty-sub">Configure a API key e use os seletores acima</div>
         </div>
       </div>
     </div>
 
     <!-- TASKS -->
-    <div id="vTasks" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
-      <div class="threads-filter">
-        <button class="secondary small active" id="tkALL"  onclick="filterTasks('ALL')">Todos</button>
-        <button class="secondary small"        id="tkIM"   onclick="filterTasks('IM')">IM</button>
-        <button class="secondary small"        id="tkIC"   onclick="filterTasks('IC')">IC</button>
-        <button class="secondary small"        id="tkPROF" onclick="filterTasks('PROF')">PROF</button>
-        <button class="secondary small"        id="tkPES"  onclick="filterTasks('PES')">PES</button>
-      </div>
-      <div class="threads-area" id="tasksContainer">
-        <div class="empty-state">
-          <div class="empty-icon">✓</div>
-          <div class="empty-title">Nenhuma task ainda</div>
-          <div class="empty-sub">Tasks aparecem com t/ no input</div>
-        </div>
+    <div id="vTasks" style="display:none;flex:1;min-height:0;flex-direction:column;overflow:hidden;">
+      <div class="filter-bar" id="taskFilters"></div>
+      <div class="results-area" id="tasksContainer">
+        <div class="empty-state"><div class="empty-icon">✓</div><div class="empty-title">Nenhuma task</div><div class="empty-sub">Use t/ para criar tasks</div></div>
       </div>
     </div>
 
     <!-- THREADS -->
-    <div id="vThreads" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
-      <div class="threads-wrap" style="display:flex;flex-direction:column;flex:1;overflow:hidden;">
-        <div class="threads-filter">
-          <button class="secondary small active" id="fALL"  onclick="filterThreads('ALL')">Todos</button>
-          <button class="secondary small"        id="fIM"   onclick="filterThreads('IM')">IM</button>
-          <button class="secondary small"        id="fIC"   onclick="filterThreads('IC')">IC</button>
-          <button class="secondary small"        id="fPROF" onclick="filterThreads('PROF')">PROF</button>
-          <button class="secondary small"        id="fPES"  onclick="filterThreads('PES')">PES</button>
-        </div>
-        <div class="threads-area" id="threadsContainer">
-          <div class="empty-state">
-            <div class="empty-icon">◈</div>
-            <div class="empty-title">Nenhuma thread ainda</div>
-            <div class="empty-sub">Threads aparecem com h/ ou u/ no input</div>
-          </div>
-        </div>
+    <div id="vThreads" style="display:none;flex:1;min-height:0;flex-direction:column;overflow:hidden;">
+      <div class="filter-bar" id="threadFilters"></div>
+      <div class="results-area" id="threadsContainer">
+        <div class="empty-state"><div class="empty-icon">◈</div><div class="empty-title">Nenhuma thread</div><div class="empty-sub">Use h/ ou u/ para criar threads</div></div>
       </div>
     </div>
 
   </div>
 </main>
-
-<!-- EDIT MODAL -->
-<div class="modal-overlay" id="editModal">
-  <div class="modal">
-    <div class="modal-header">
-      <span class="modal-title">Editar entry</span>
-      <button class="modal-close" onclick="closeEdit()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="field-group">
-        <div class="field-label">Tipo</div>
-        <select id="eType">
-          <option>TASK</option><option>UPDATE</option><option>THREAD</option>
-          <option>DONE</option><option>REPORT</option><option>REJECTED</option>
-        </select>
-      </div>
-      <div class="field-group">
-        <div class="field-label">Categoria</div>
-        <select id="eCat">
-          <option value="">—</option>
-          <option>PES</option><option>PROF</option><option>IM</option><option>IC</option>
-        </select>
-      </div>
-      <div class="field-group">
-        <div class="field-label">Thread ref</div>
-        <input type="text" id="eThread" placeholder="ex: Share Groceries 99Food" />
-      </div>
-      <div class="field-group">
-        <div class="field-label">Conteúdo</div>
-        <textarea id="eContent"></textarea>
-      </div>
-      <div class="field-group">
-        <div class="field-label">Prazo (YYYY-MM-DD)</div>
-        <input type="text" id="eDeadline" placeholder="2026-03-20" />
-      </div>
-      <div class="field-group">
-        <div class="field-label">Entidades (separadas por vírgula)</div>
-        <input type="text" id="eEntities" placeholder="3S, 99Food" />
-      </div>
-      <div class="field-group">
-        <div class="field-label">Status</div>
-        <select id="eStatus">
-          <option value="">—</option>
-          <option>OPEN</option><option>DONE</option><option>PENDING_REVIEW</option>
-        </select>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button class="secondary" onclick="closeEdit()">Cancelar</button>
-      <button onclick="saveEdit()">Salvar</button>
-    </div>
-  </div>
-</div>
 
 <script>
 const SYSTEM_PROMPT = `## ROLE
@@ -544,111 +428,122 @@ Input: qual o capital do brasil
 Output:
 {"type":"REJECTED","category":null,"thread_ref":null,"content":null,"deadline_iso":null,"entities":[],"meeting_context":null,"status":null,"suggest_new_thread":false,"rejection_reason":"Input não segue formato do sistema"}`;
 
-// ── DATA ────────────────────────────────────────────────
-const TYPE_CHIPS = [
-  { label: 't/', title: 'task' },
-  { label: 'u/', title: 'update' },
-  { label: 'h/', title: 'thread' },
-  { label: 'd/', title: 'done' },
-];
-const CAT_CHIPS = [
-  { label: 'pes/',  title: 'pessoal' },
-  { label: 'prof/', title: 'profissional' },
-  { label: 'im/',   title: 'inteligência de mercado' },
-  { label: 'ic/',   title: 'inteligência competitiva' },
-];
-const SYNC_CHIPS = ['sync im','sync ic','sync prof','sync intel'];
-const QUICK_TESTS = [
-  "t/ pes/ renovar cnh",
-  "h/ im/ share groc 99 > metodologia até 20/03",
-  "u/ im/ share groc 99 > subsidios depende de 3S",
-  "t/ prof/ msg nic parceria",
-  "d/ im/ share groc 99",
-  "qual o capital do brasil",
-];
+// ── CONSTANTS ───────────────────────────────────────────
+const TYPES = ['t/','u/','h/','d/'];
+const CATS  = ['pes/','prof/','im/','ic/'];
+const SYNCS = ['sync im','sync ic','sync prof','sync intel'];
+const CAT_MAP = { 'pes/':'PES','prof/':'PROF','im/':'IM','ic/':'IC' };
+const TYPE_MAP = { 't/':'TASK','u/':'UPDATE','h/':'THREAD','d/':'DONE' };
+const FILTERS  = ['ALL','IM','IC','PROF','PES'];
 
 // ── STATE ───────────────────────────────────────────────
-let apiKey  = '';
-let results = [];
-let editIdx = null;
-let threadFilter = 'ALL';
+let apiKey = '', results = [];
+let selType = null, selCat = null;
+let threadFilter = 'ALL', taskFilter = 'ALL';
+const LS_R = 'memoryos_results', LS_K = 'memoryos_apikey';
 
-const LS_R = 'memoryos_results';
-const LS_K = 'memoryos_apikey';
+// ── PILL SELECTORS ──────────────────────────────────────
+function buildPills() {
+  const tr = document.getElementById('typePills');
+  TYPES.forEach(t => {
+    const p = mkPill(t, 'pill-type');
+    p.onclick = () => selectType(t, p);
+    tr.appendChild(p);
+  });
+  const cr = document.getElementById('catPills');
+  CATS.forEach(c => {
+    const p = mkPill(c, 'pill-cat');
+    p.onclick = () => selectCat(c, p);
+    cr.appendChild(p);
+  });
+  const sr = document.getElementById('syncPills');
+  SYNCS.forEach(s => {
+    const p = mkPill(s.replace('sync ',''), 'pill-sync');
+    p.onclick = () => { document.getElementById('inputText').value = s; parseInput(); };
+    sr.appendChild(p);
+  });
 
-// ── CHIPS ───────────────────────────────────────────────
-function buildChips() {
-  TYPE_CHIPS.forEach(c => {
-    const b = mkChip(c.label, c.title, 'chip-type');
-    b.onclick = () => appendInput(c.label + ' ');
-    document.getElementById('typeChips').appendChild(b);
-  });
-  CAT_CHIPS.forEach(c => {
-    const b = mkChip(c.label, c.title, 'chip-cat');
-    b.onclick = () => appendInput(c.label + ' ');
-    document.getElementById('catChips').appendChild(b);
-  });
-  SYNC_CHIPS.forEach(s => {
-    const b = mkChip(s, '', 'chip-sync');
-    b.onclick = () => { document.getElementById('inputText').value = s; parseInput(); };
-    document.getElementById('syncChips').appendChild(b);
-  });
-  QUICK_TESTS.forEach(t => {
-    const b = mkChip(t, '', '');
-    b.onclick = () => { document.getElementById('inputText').value = t; parseInput(); };
-    document.getElementById('quickGrid').appendChild(b);
+  // Filter bars
+  ['taskFilters','threadFilters'].forEach(id => {
+    const bar = document.getElementById(id);
+    FILTERS.forEach(f => {
+      const b = document.createElement('button');
+      b.className = 'sec sm' + (f === 'ALL' ? ' active' : '');
+      b.textContent = f;
+      b.id = id.slice(0,2) + f; // tkALL, tkIM... thALL, thIM...
+      b.onclick = () => id === 'taskFilters' ? filterTasks(f) : filterThreads(f);
+      bar.appendChild(b);
+    });
   });
 }
 
-function mkChip(label, title, cls) {
+function mkPill(label, cls) {
   const b = document.createElement('button');
-  b.className = 'chip' + (cls ? ' ' + cls : '');
+  b.className = 'pill ' + cls;
   b.textContent = label;
-  if (title) b.title = title;
   return b;
 }
 
-function appendInput(txt) {
-  const ta = document.getElementById('inputText');
-  const s = ta.selectionStart;
-  ta.value = ta.value.slice(0, s) + txt + ta.value.slice(s);
-  ta.focus();
-  ta.selectionStart = ta.selectionEnd = s + txt.length;
+function selectType(t, el) {
+  if (selType === t) { selType = null; el.classList.remove('active'); }
+  else {
+    selType = t;
+    document.querySelectorAll('#typePills .pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+  }
+  syncPlaceholder();
 }
 
-// ── COLLAPSIBLE ─────────────────────────────────────────
-function toggleCol(id) {
-  const h = document.getElementById('h' + id);
-  const b = document.getElementById('b' + id);
-  const open = b.classList.toggle('open');
-  h.classList.toggle('open', open);
+function selectCat(c, el) {
+  if (selCat === c) { selCat = null; el.classList.remove('active'); }
+  else {
+    selCat = c;
+    document.querySelectorAll('#catPills .pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+  }
+  syncPlaceholder();
+}
+
+function syncPlaceholder() {
+  const ta = document.getElementById('inputText');
+  const t = selType, c = selCat;
+  if (!t && !c) { ta.placeholder = 'thread_ref > conteúdo  (ou apenas conteúdo para t/)'; return; }
+  if (t === 'u/' || t === 'h/' || t === 'd/') ta.placeholder = 'thread_ref > conteúdo';
+  else ta.placeholder = 'conteúdo da task';
+}
+
+function buildInput() {
+  const raw = document.getElementById('inputText').value.trim();
+  if (!raw) return null;
+  // If sync pill was used, inputText already has full command
+  if (raw.startsWith('sync ')) return raw;
+  if (!selType || !selCat) return raw; // fallback: send as-is
+  return `${selType} ${selCat} ${raw}`;
+}
+
+function clearInput() {
+  document.getElementById('inputText').value = '';
+  selType = null; selCat = null;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  syncPlaceholder();
 }
 
 // ── STORAGE ─────────────────────────────────────────────
 function loadFromStorage() {
   try {
     const k = localStorage.getItem(LS_K);
-    if (k) {
-      apiKey = k;
-      document.getElementById('apiKey').value = k;
-      setKeyStatus(true, k);
-    }
+    if (k) { apiKey = k; document.getElementById('apiKey').value = k; setKeyStatus(true, k); }
     const r = localStorage.getItem(LS_R);
-    if (r) {
-      results = JSON.parse(r).map(x => ({ ...x, ts: new Date(x.ts) }));
-      renderResults();
-      renderThreads();
-    }
+    if (r) { results = JSON.parse(r).map(x => ({ ...x, ts: new Date(x.ts) })); renderAll(); }
   } catch(e) {}
 }
 
 function persist() {
   try {
-    localStorage.setItem(LS_R, JSON.stringify(results.slice(0, 200)));
+    localStorage.setItem(LS_R, JSON.stringify(results.slice(0,200)));
     const b = document.getElementById('persistBadge');
-    b.style.display = 'inline';
-    clearTimeout(b._t);
-    b._t = setTimeout(() => b.style.display = 'none', 1800);
+    b.style.display = 'inline'; clearTimeout(b._t);
+    b._t = setTimeout(() => b.style.display = 'none', 1600);
   } catch(e) {}
 }
 
@@ -664,24 +559,21 @@ function saveKey() {
   try { ok ? localStorage.setItem(LS_K, apiKey) : localStorage.removeItem(LS_K); } catch(e) {}
 }
 
-function clearInput() { document.getElementById('inputText').value = ''; }
-
 function clearHistory() {
   if (!confirm('Limpar todo o histórico?')) return;
   results = [];
   try { localStorage.removeItem(LS_R); } catch(e) {}
-  renderResults(); renderThreads();
+  renderAll();
 }
 
 // ── PARSE ───────────────────────────────────────────────
 async function parseInput() {
-  const input = document.getElementById('inputText').value.trim();
+  const input = buildInput();
   if (!input) return;
   if (!apiKey) { alert('Configure sua API key primeiro.'); return; }
 
   const btn = document.getElementById('parseBtn');
   btn.disabled = true; btn.textContent = 'Parseando...';
-
   const lid = 'l' + Date.now();
   prependLoading(lid, input);
 
@@ -707,18 +599,18 @@ async function parseInput() {
     let parsed;
     try { parsed = JSON.parse(raw); }
     catch(e) {
-      const stripped = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '').trim();
+      const stripped = raw.replace(/^```(?:json)?\s*/i,'').replace(/\s*```\s*$/,'').trim();
       try { parsed = JSON.parse(stripped); }
-      catch(e2) { parsed = { type:'REJECTED', rejection_reason: 'JSON inválido: ' + raw }; }
+      catch(e2) { parsed = { type:'REJECTED', rejection_reason:'JSON inválido: ' + raw }; }
     }
     removeLoading(lid);
     results.unshift({ input, parsed, raw, ts: new Date() });
   } catch(err) {
     removeLoading(lid);
-    results.unshift({ input, parsed: { type:'REJECTED', rejection_reason: 'Erro API: ' + err.message }, raw: '', ts: new Date() });
+    results.unshift({ input, parsed:{ type:'REJECTED', rejection_reason:'Erro API: ' + err.message }, raw:'', ts: new Date() });
   }
 
-  renderResults(); renderThreads(); renderTasks(); persist();
+  renderAll(); persist();
   if (window.innerWidth <= 700) mobSwitch('results');
   btn.disabled = false; btn.textContent = 'Parsear →';
 }
@@ -727,265 +619,260 @@ function prependLoading(id, input) {
   const c = document.getElementById('resultsContainer');
   if (c.querySelector('.empty-state')) c.innerHTML = '';
   const d = document.createElement('div');
-  d.id = id; d.className = 'result-card';
-  d.innerHTML = `<div class="loading-row"><div class="spinner"></div><span>Parseando: <em>${esc(input)}</em></span></div>`;
+  d.id = id; d.className = 'result-card col-TASK';
+  d.innerHTML = `<div class="loading-row"><div class="spinner"></div><span>${esc(input)}</span></div>`;
   c.prepend(d);
 }
 function removeLoading(id) { const e = document.getElementById(id); if (e) e.remove(); }
 
-// ── RENDER CARDS ─────────────────────────────────────────
+// ── RENDER ALL ───────────────────────────────────────────
+function renderAll() { renderResults(); renderTasks(); renderThreads(); }
+
+// ── HISTORY CARDS ────────────────────────────────────────
 function renderResults() {
-  const c  = document.getElementById('resultsContainer');
+  const c = document.getElementById('resultsContainer');
   const hc = document.getElementById('histCount');
   const tc = document.getElementById('tabCount');
   if (!results.length) {
-    c.innerHTML = `<div class="empty-state"><div class="empty-icon">⬡</div><div class="empty-title">Nenhum parse ainda</div><div class="empty-sub">Configure a API key, digite um input e clique Parsear</div></div>`;
-    hc.textContent = ''; if (tc) tc.textContent = '';
-    return;
+    c.innerHTML = `<div class="empty-state"><div class="empty-icon">⬡</div><div class="empty-title">Nenhum parse ainda</div><div class="empty-sub">Configure a API key e use os seletores acima</div></div>`;
+    hc.textContent = ''; if (tc) tc.textContent = ''; return;
   }
   hc.textContent = results.length + (results.length > 1 ? ' entries' : ' entry');
   if (tc) tc.textContent = `(${results.length})`;
-  c.innerHTML = results.map((r, i) => card(r, i)).join('');
+  c.innerHTML = results.map((r,i) => buildCard(r,i)).join('');
 }
 
-function card(r, i) {
+function buildCard(r, i) {
   const p    = r.parsed;
   const type = p.type || 'REJECTED';
-  const ts   = r.ts instanceof Date ? r.ts.toLocaleTimeString('pt-BR', { hour:'2-digit', minute:'2-digit' }) : '';
+  const ts   = r.ts instanceof Date ? r.ts.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) : '';
 
   let body = '';
+
   if (type === 'REJECTED') {
-    body = `<div class="card-rejection">⚠ ${esc(p.rejection_reason || 'Rejeitado')}</div>`;
+    body = `<div class="card-rejection">⚠ ${esc(p.rejection_reason || 'Rejeitado')}<br><small style="color:var(--text-muted);font-size:9px;">Raw: ${esc((r.raw||'').slice(0,120))}</small></div>
+    <div class="card-actions">
+      <button class="sec xs" onclick="copyDebug(${i})">Debug</button>
+      <span class="spacer"></span>
+      <button class="danger xs" onclick="delEntry(${i})">Excluir</button>
+    </div>`;
   } else {
-    if (p.content)    body += `<div class="card-content">${esc(p.content)}</div>`;
-    if (p.thread_ref) body += `<div class="card-thread">↳ ${esc(p.thread_ref)}</div>`;
-    const m = [];
-    if (p.deadline_iso)    m.push(`<span class="meta-item"><span class="ml">prazo</span>${esc(p.deadline_iso)}</span>`);
-    if (p.meeting_context) m.push(`<span class="meta-item"><span class="ml">reunião</span>${esc(p.meeting_context)}</span>`);
-    if (p.status && p.status !== 'OPEN') m.push(`<span class="meta-item"><span class="ml">status</span>${esc(p.status)}</span>`);
-    if (m.length) body += `<div class="card-meta">${m.join('')}</div>`;
-    if (p.entities && p.entities.length)
-      body += `<div class="card-entities">${p.entities.map(e => `<span class="entity-tag">${esc(e)}</span>`).join('')}</div>`;
+    // Editable fields
+    const entStr = (p.entities||[]).join(', ');
+    body = `<div class="card-content-area">
+      <div class="card-field">
+        <div class="card-field-label">Conteúdo</div>
+        <textarea id="cf_content_${i}" onchange="saveField(${i},'content',this.value)">${esc(p.content||'')}</textarea>
+      </div>
+      ${p.thread_ref !== undefined ? `<div class="card-field">
+        <div class="card-field-label">Thread ref</div>
+        <input type="text" id="cf_thread_${i}" value="${esc(p.thread_ref||'')}" onchange="saveField(${i},'thread_ref',this.value)" placeholder="—"/>
+      </div>` : ''}
+      <div class="card-field-row">
+        <div class="card-field">
+          <div class="card-field-label">Tipo</div>
+          <select id="cf_type_${i}" onchange="saveField(${i},'type',this.value)">
+            ${['TASK','UPDATE','THREAD','DONE','REPORT'].map(t=>`<option${p.type===t?' selected':''}>${t}</option>`).join('')}
+          </select>
+        </div>
+        <div class="card-field">
+          <div class="card-field-label">Categoria</div>
+          <select id="cf_cat_${i}" onchange="saveField(${i},'category',this.value)">
+            <option value="">—</option>
+            ${['PES','PROF','IM','IC'].map(c=>`<option${p.category===c?' selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="card-field-row">
+        <div class="card-field">
+          <div class="card-field-label">Prazo</div>
+          <input type="date" id="cf_dl_${i}" value="${esc(p.deadline_iso||'')}" onchange="saveField(${i},'deadline_iso',this.value)"/>
+        </div>
+        <div class="card-field">
+          <div class="card-field-label">Status</div>
+          <select id="cf_status_${i}" onchange="saveField(${i},'status',this.value)">
+            <option value="">—</option>
+            ${['OPEN','DONE','PENDING_REVIEW'].map(s=>`<option${p.status===s?' selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="card-field">
+        <div class="card-field-label">Entidades</div>
+        <input type="text" value="${esc(entStr)}" placeholder="3S, 99Food" onchange="saveEntities(${i},this.value)"/>
+      </div>
+    </div>
+    <div class="card-update-section">
+      <div class="card-update-label">Novo update</div>
+      <textarea class="card-update-input" id="cu_${i}" placeholder="Descreva o update…"></textarea>
+      <div class="card-update-actions">
+        <button class="sec xs" onclick="sendUpdate(${i})">→ Enviar update</button>
+      </div>
+    </div>
+    <div class="card-actions">
+      <button class="sec xs" onclick="copyDebug(${i})">Debug</button>
+      <span class="spacer"></span>
+      <button class="sec xs" onclick="toggleRaw('rj${i}')">JSON</button>
+      <button class="danger xs" onclick="delEntry(${i})">Excluir</button>
+    </div>
+    <pre class="raw-json" id="rj${i}">${esc(JSON.stringify(p,null,2))}</pre>`;
   }
 
-  const rid = 'rj' + i;
-  return `<div class="result-card" id="card-${i}">
-    <div class="card-header">
-      <span class="type-badge type-${type}">${type}</span>
-      ${p.category ? `<span class="card-category">${p.category}</span>` : ''}
+  const preview = p.thread_ref || p.content || p.rejection_reason || '';
+
+  return `<div class="result-card col-${type}">
+    <div class="card-header" onclick="toggleCard(this)">
+      <span class="type-badge">${type}</span>
+      ${p.category ? `<span class="card-cat">${p.category}</span>` : ''}
+      <span class="card-preview">${esc(preview)}</span>
       <span class="card-ts">${ts}</span>
+      <span class="card-chevron">▼</span>
     </div>
     <div class="card-body">${body}</div>
-    <div class="card-actions">
-      <button class="secondary small" onclick="openEdit(${i})">Editar</button>
-      <button class="danger small"    onclick="delEntry(${i})">Excluir</button>
-      <span class="spacer"></span>
-      <button class="secondary small" onclick="toggleRaw('${rid}')">JSON</button>
-      <button class="secondary small" onclick="copyDebug(${i})" title="Copiar debug completo">Debug</button>
-    </div>
-    <pre class="raw-json" id="${rid}">${esc(JSON.stringify(p, null, 2))}</pre>
   </div>`;
 }
 
-function toggleRaw(id) { const e = document.getElementById(id); if (e) e.classList.toggle('visible'); }
+function toggleCard(headerEl) {
+  headerEl.closest('.result-card').classList.toggle('expanded');
+}
 
-function copyDebug(i) {
+function toggleRaw(id) { const e = document.getElementById(id); if (e) e.classList.toggle('open'); }
+
+function saveField(i, field, value) {
+  if (!results[i]) return;
+  results[i].parsed[field] = value || null;
+  results[i].raw = JSON.stringify(results[i].parsed);
+  persist();
+  renderTasks(); renderThreads();
+}
+
+function saveEntities(i, value) {
+  if (!results[i]) return;
+  results[i].parsed.entities = value ? value.split(',').map(s=>s.trim()).filter(Boolean) : [];
+  results[i].raw = JSON.stringify(results[i].parsed);
+  persist();
+}
+
+function sendUpdate(i) {
   const r = results[i];
-  const txt = [
-    '=== MEMORYOS DEBUG ===',
-    'Input: ' + r.input,
-    'Raw response: ' + (r.raw || '(vazio)'),
-    'Parsed: ' + JSON.stringify(r.parsed, null, 2),
-    'Timestamp: ' + (r.ts instanceof Date ? r.ts.toISOString() : r.ts),
-  ].join('\n');
-  navigator.clipboard.writeText(txt).then(() => {
-    const btn = document.querySelector(`#card-${i} .debug-btn`);
-    // flash feedback via alert fallback
-    alert('Debug copiado para área de transferência');
-  }).catch(() => {
-    prompt('Copie o debug abaixo:', txt);
-  });
+  const p = r.parsed;
+  const updateText = document.getElementById('cu_' + i).value.trim();
+  if (!updateText) return;
+  const cat = (p.category || '').toLowerCase();
+  const catPrefix = cat ? cat + '/' : '';
+  const threadRef = p.thread_ref || p.content || '';
+  const prefixedInput = `u/ ${catPrefix}${threadRef} > ${updateText}`;
+  document.getElementById('inputText').value = prefixedInput;
+  selType = null; selCat = null;
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+  if (window.innerWidth <= 700) mobSwitch('input');
+  document.getElementById('inputText').focus();
 }
 
 function delEntry(i) {
   if (!confirm('Excluir esta entry?')) return;
-  results.splice(i, 1);
-  renderResults(); renderThreads(); renderTasks(); persist();
+  results.splice(i, 1); renderAll(); persist();
 }
 
-// ── EDIT ─────────────────────────────────────────────────
-function openEdit(i) {
-  editIdx = i;
-  const p = results[i].parsed;
-  document.getElementById('eType').value    = p.type      || 'TASK';
-  document.getElementById('eCat').value     = p.category  || '';
-  document.getElementById('eThread').value  = p.thread_ref || '';
-  document.getElementById('eContent').value = p.content   || '';
-  document.getElementById('eDeadline').value= p.deadline_iso || '';
-  document.getElementById('eEntities').value= (p.entities || []).join(', ');
-  document.getElementById('eStatus').value  = p.status    || '';
-  document.getElementById('editModal').classList.add('open');
-}
-function closeEdit() { document.getElementById('editModal').classList.remove('open'); editIdx = null; }
-function saveEdit() {
-  if (editIdx === null) return;
-  const p = results[editIdx].parsed;
-  p.type       = document.getElementById('eType').value;
-  p.category   = document.getElementById('eCat').value     || null;
-  p.thread_ref = document.getElementById('eThread').value.trim() || null;
-  p.content    = document.getElementById('eContent').value.trim();
-  p.deadline_iso = document.getElementById('eDeadline').value.trim() || null;
-  const ent = document.getElementById('eEntities').value;
-  p.entities   = ent ? ent.split(',').map(s => s.trim()).filter(Boolean) : [];
-  p.status     = document.getElementById('eStatus').value || null;
-  results[editIdx].parsed = p;
-  results[editIdx].raw    = JSON.stringify(p);
-  closeEdit(); renderResults(); renderThreads(); persist();
-}
-document.getElementById('editModal').addEventListener('click', e => { if (e.target.id === 'editModal') closeEdit(); });
-
-// ── THREADS ──────────────────────────────────────────────
-function buildThreads() {
-  const map = {};
-  results.forEach(r => {
-    const p = r.parsed;
-    if (!p.thread_ref || p.type === 'REJECTED') return;
-    const key = `${p.category}::${p.thread_ref}`;
-    if (!map[key]) map[key] = { category: p.category, ref: p.thread_ref, entries: [], deadline: null, ents: new Set() };
-    map[key].entries.push({ content: p.content, type: p.type, ts: r.ts });
-    if (p.deadline_iso) map[key].deadline = p.deadline_iso;
-    (p.entities || []).forEach(e => map[key].ents.add(e));
-  });
-  return Object.values(map);
+function copyDebug(i) {
+  const r = results[i];
+  const txt = ['=== MEMORYOS DEBUG ===','Input: '+r.input,'Raw: '+(r.raw||''),'Parsed: '+JSON.stringify(r.parsed,null,2),'TS: '+(r.ts instanceof Date?r.ts.toISOString():r.ts)].join('\n');
+  navigator.clipboard.writeText(txt).catch(() => prompt('Copie o debug:', txt));
+  alert('Debug copiado');
 }
 
-function renderThreads() {
-  const c = document.getElementById('threadsContainer');
-  let threads = buildThreads();
-  if (threadFilter !== 'ALL') threads = threads.filter(t => t.category === threadFilter);
-
-  if (!threads.length) {
-    c.innerHTML = `<div class="empty-state"><div class="empty-icon">◈</div><div class="empty-title">Nenhuma thread${threadFilter !== 'ALL' ? ' em ' + threadFilter : ''}</div><div class="empty-sub">Threads aparecem com h/ ou u/ no input</div></div>`;
-    return;
-  }
-
-  threads.sort((a, b) => {
-    if (!a.deadline && !b.deadline) return 0;
-    if (!a.deadline) return 1;
-    if (!b.deadline) return -1;
-    return a.deadline.localeCompare(b.deadline);
-  });
-
-  c.innerHTML = threads.map(t => {
-    const last = t.entries[t.entries.length - 1];
-    const ents = [...t.ents];
-    return `<div class="thread-card">
-      <div class="thread-card-header">
-        <span class="thread-cat cat-${t.category}">${t.category}</span>
-        <span class="thread-title">${esc(t.ref)}</span>
-        <span class="thread-count">${t.entries.length} entr${t.entries.length > 1 ? 'ies' : 'y'}</span>
-      </div>
-      <div class="thread-body">
-        ${last ? `<div class="thread-last">${esc(last.content)}</div>` : ''}
-        ${t.deadline ? `<div class="thread-deadline">⏱ ${t.deadline}</div>` : ''}
-        ${ents.length ? `<div class="thread-ents">${ents.map(e => `<span class="entity-tag">${esc(e)}</span>`).join('')}</div>` : ''}
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function filterThreads(cat) {
-  threadFilter = cat;
-  ['ALL','IM','IC','PROF','PES'].forEach(c => {
-    const b = document.getElementById('f' + c);
-    if (b) b.classList.toggle('active', c === cat);
-  });
-  renderThreads();
-}
-
-// ── TASKS VIEW ──────────────────────────────────────────
-let taskFilter = 'ALL';
-
-function filterTasks(cat) {
-  taskFilter = cat;
-  ['ALL','IM','IC','PROF','PES'].forEach(c => {
-    const b = document.getElementById('tk' + c);
-    if (b) b.classList.toggle('active', c === cat);
-  });
+// ── TASKS VIEW ───────────────────────────────────────────
+function filterTasks(f) {
+  taskFilter = f;
+  FILTERS.forEach(x => { const b = document.getElementById('tkx'+x); if(b) b.classList.toggle('active', x===f); });
+  // rebuild filter buttons with correct ids
+  document.querySelectorAll('#taskFilters button').forEach(b => b.classList.toggle('active', b.textContent === f));
   renderTasks();
 }
 
 function renderTasks() {
   const c = document.getElementById('tasksContainer');
-  let tasks = results.filter(r => r.parsed.type === 'TASK' && r.parsed.type !== 'REJECTED');
-  if (taskFilter !== 'ALL') tasks = tasks.filter(r => r.parsed.category === taskFilter);
-  if (!tasks.length) {
-    c.innerHTML = `<div class="empty-state"><div class="empty-icon">✓</div><div class="empty-title">Nenhuma task${taskFilter !== 'ALL' ? ' em ' + taskFilter : ''}</div><div class="empty-sub">Tasks aparecem com t/ no input</div></div>`;
+  let indexed = results.map((r,i) => ({r,i})).filter(({r}) => r.parsed.type === 'TASK');
+  if (taskFilter !== 'ALL') indexed = indexed.filter(({r}) => r.parsed.category === taskFilter);
+  if (!indexed.length) {
+    c.innerHTML = `<div class="empty-state"><div class="empty-icon">✓</div><div class="empty-title">Nenhuma task${taskFilter!=='ALL'?' em '+taskFilter:''}</div><div class="empty-sub">Use t/ para criar tasks</div></div>`;
     return;
   }
-  // sort: with deadline first (ascending), then without
-  tasks.sort((a, b) => {
-    const da = a.parsed.deadline_iso, db = b.parsed.deadline_iso;
-    if (!da && !db) return 0;
-    if (!da) return 1;
-    if (!db) return -1;
+  indexed.sort((a,b) => {
+    const da = a.r.parsed.deadline_iso, db = b.r.parsed.deadline_iso;
+    if (!da&&!db) return 0; if (!da) return 1; if (!db) return -1;
     return da.localeCompare(db);
   });
-  c.innerHTML = tasks.map(r => {
+  c.innerHTML = indexed.map(({r,i}) => buildCard(r,i)).join('');
+}
+
+// ── THREADS VIEW ─────────────────────────────────────────
+function filterThreads(f) {
+  threadFilter = f;
+  document.querySelectorAll('#threadFilters button').forEach(b => b.classList.toggle('active', b.textContent === f));
+  renderThreads();
+}
+
+function renderThreads() {
+  const c = document.getElementById('threadsContainer');
+  const map = {};
+  results.forEach(r => {
     const p = r.parsed;
-    const ents = (p.entities || []);
-    return `<div class="thread-card">
-      <div class="thread-card-header">
-        <span class="thread-cat cat-${p.category}">${p.category || ''}</span>
-        <span class="thread-title">${esc(p.content)}</span>
-      </div>
-      ${(p.deadline_iso || ents.length) ? `<div class="thread-body">
-        ${p.deadline_iso ? `<div class="thread-deadline">⏱ ${p.deadline_iso}</div>` : ''}
-        ${ents.length ? `<div class="thread-ents">${ents.map(e => `<span class="entity-tag">${esc(e)}</span>`).join('')}</div>` : ''}
-      </div>` : ''}
-    </div>`;
+    if (!p.thread_ref || p.type === 'REJECTED') return;
+    const key = `${p.category}::${p.thread_ref}`;
+    if (!map[key]) map[key] = { category:p.category, ref:p.thread_ref, entries:[], deadline:null, ents:new Set() };
+    map[key].entries.push({ content:p.content, type:p.type });
+    if (p.deadline_iso) map[key].deadline = p.deadline_iso;
+    (p.entities||[]).forEach(e => map[key].ents.add(e));
+  });
+  let threads = Object.values(map);
+  if (threadFilter !== 'ALL') threads = threads.filter(t => t.category === threadFilter);
+  if (!threads.length) {
+    c.innerHTML = `<div class="empty-state"><div class="empty-icon">◈</div><div class="empty-title">Nenhuma thread${threadFilter!=='ALL'?' em '+threadFilter:''}</div><div class="empty-sub">Use h/ ou u/ para criar threads</div></div>`;
+    return;
+  }
+  threads.sort((a,b) => {
+    if (!a.deadline&&!b.deadline) return 0; if (!a.deadline) return 1; if (!b.deadline) return -1;
+    return a.deadline.localeCompare(b.deadline);
+  });
+  c.innerHTML = threads.map(t => {
+    // find index of the most recent entry for this thread
+    const idx = results.findIndex(r =>
+      r.parsed.thread_ref === t.ref &&
+      r.parsed.category === t.category &&
+      r.parsed.type !== 'REJECTED'
+    );
+    if (idx === -1) return '';
+    return buildCard(results[idx], idx);
   }).join('');
 }
 
-// ── VIEWS ───────────────────────────────────────────────
+// ── VIEWS ────────────────────────────────────────────────
 function switchView(v) {
-  document.getElementById('vHistory').style.display = v === 'history' ? 'flex' : 'none';
-  document.getElementById('vTasks').style.display   = v === 'tasks'   ? 'flex' : 'none';
-  document.getElementById('vThreads').style.display = v === 'threads' ? 'flex' : 'none';
-  document.getElementById('vtH').classList.toggle('active', v === 'history');
-  document.getElementById('vtK').classList.toggle('active', v === 'tasks');
-  document.getElementById('vtT').classList.toggle('active', v === 'threads');
-  if (v === 'threads') renderThreads();
-  if (v === 'tasks')   renderTasks();
+  document.getElementById('vHistory').style.display = v==='history'?'flex':'none';
+  document.getElementById('vTasks').style.display   = v==='tasks'  ?'flex':'none';
+  document.getElementById('vThreads').style.display = v==='threads'?'flex':'none';
+  ['vtH','vtK','vtT'].forEach((id,i) => document.getElementById(id).classList.toggle('active', ['history','tasks','threads'][i]===v));
+  if (v==='tasks')   renderTasks();
+  if (v==='threads') renderThreads();
 }
 
-// ── MOBILE ──────────────────────────────────────────────
+// ── MOBILE ───────────────────────────────────────────────
 function mobSwitch(tab) {
-  const pi = document.getElementById('panelInput');
-  const pr = document.getElementById('panelResults');
-  const ti = document.getElementById('mobTInput');
-  const tr = document.getElementById('mobTResults');
-  if (tab === 'input') {
-    pi.classList.add('mob-on');   pr.classList.remove('mob-on');
-    ti.classList.add('active');   tr.classList.remove('active');
-  } else {
-    pr.classList.add('mob-on');   pi.classList.remove('mob-on');
-    tr.classList.add('active');   ti.classList.remove('active');
-  }
+  const pi = document.getElementById('panelInput'),  pr = document.getElementById('panelResults');
+  const ti = document.getElementById('mobTInput'),   tr = document.getElementById('mobTResults');
+  if (tab==='input')   { pi.classList.add('mob-on'); pr.classList.remove('mob-on'); ti.classList.add('active'); tr.classList.remove('active'); }
+  else                 { pr.classList.add('mob-on'); pi.classList.remove('mob-on'); tr.classList.add('active'); ti.classList.remove('active'); }
 }
 
-// ── UTIL ────────────────────────────────────────────────
+// ── UTIL ─────────────────────────────────────────────────
 function esc(s) {
-  if (s === null || s === undefined) return '';
+  if (s===null||s===undefined) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+document.getElementById('inputText').addEventListener('keydown', e => { if (e.key==='Enter'&&(e.metaKey||e.ctrlKey)) parseInput(); });
 
-document.getElementById('inputText').addEventListener('keydown', e => {
-  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) parseInput();
-});
-
-// ── BOOT ────────────────────────────────────────────────
-buildChips();
+// ── BOOT ─────────────────────────────────────────────────
+buildPills();
 loadFromStorage();
 </script>
 </body>
