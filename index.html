@@ -676,7 +676,7 @@ async function parseInput() {
         'anthropic-dangerous-direct-browser-access': 'true'
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1000,
         system: SYSTEM_PROMPT,
         messages: [{ role: 'user', content: input }]
@@ -687,7 +687,11 @@ async function parseInput() {
     const raw = data.content[0].text.trim();
     let parsed;
     try { parsed = JSON.parse(raw); }
-    catch(e) { parsed = { type:'REJECTED', rejection_reason: 'JSON inválido: ' + raw }; }
+    catch(e) {
+      const stripped = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '').trim();
+      try { parsed = JSON.parse(stripped); }
+      catch(e2) { parsed = { type:'REJECTED', rejection_reason: 'JSON inválido: ' + raw }; }
+    }
     removeLoading(lid);
     results.unshift({ input, parsed, raw, ts: new Date() });
   } catch(err) {
